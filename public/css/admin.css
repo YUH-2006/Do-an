@@ -1,18 +1,16 @@
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
     background: #f4f6f9;
 }
 
+/* Layout */
 .admin-wrapper {
-    display: flex;
     min-height: 100vh;
 }
 
 /* Sidebar */
 .sidebar {
-    width: 220px;
-    background: #2c3e50;
+    width: 230px;
+    background: #212529; /* màu chuẩn Bootstrap dark */
     color: #fff;
     padding: 20px;
 }
@@ -20,57 +18,45 @@ body {
 .sidebar h2 {
     text-align: center;
     margin-bottom: 30px;
+    letter-spacing: 2px;
 }
 
 .sidebar a {
     display: block;
-    color: #fff;
-    padding: 10px;
+    color: #adb5bd;
+    padding: 12px;
     text-decoration: none;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    border-radius: 6px;
+    margin-bottom: 8px;
 }
 
 .sidebar a:hover {
-    background: #34495e;
+    background: #343a40;
+    color: #fff;
 }
 
-/* Main content */
+/* Main */
 .main-content {
-    flex: 1;
     padding: 30px;
+    flex: 1;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+/* Custom button */
+.btn-add {
+    background: #0d6efd;
+    color: white;
 }
 
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
+.btn-add:hover {
+    background: #0b5ed7;
 }
 
-.table th, .table td {
-    padding: 12px;
-    border: 1px solid #ddd;
+/* Table tweak */
+.table thead {
+    background: #0d6efd;
+    color: white;
 }
 
-.table th {
-    background: #3498db;
-    color: #fff;
+.table-hover tbody tr:hover {
+    background: #f1f7ff;
 }
-
-.btn {
-    padding: 6px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    color: #fff;
-    font-size: 14px;
-}
-
-.btn-add { background: #2ecc71; }
-.btn-edit { background: #f39c12; }
-.btn-delete { background: #e74c3c; }
