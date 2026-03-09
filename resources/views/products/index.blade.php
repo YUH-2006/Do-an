@@ -18,7 +18,7 @@
         <p>Giá: {{ number_format($product->price) }} VND</p>
 
         @if($product->image)
-            <img src="{{ asset('images/products/' . $product->image) }}" width="150">
+        <img src="{{ asset('images/products/burger.jpg') }}" width="150">
         @endif
 
         <br>
