@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Đồ án cơ sở</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-
 @extends('layouts.app')
 
 @section('content')
@@ -18,7 +10,7 @@
         <p>Giá: {{ number_format($product->price) }} VND</p>
 
         @if($product->image)
-        <img src="{{ asset('images/products/burger.jpg') }}" width="150">
+            <img src="{{ asset($product->image) }}" width="150" alt="{{ $product->name }}">
         @endif
 
         <br>
@@ -29,9 +21,3 @@
 @endforeach
 </div>
 @endsection
-
-
-</div>
-
-</body>
-</html>
