@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\CartController;
 
 Route::get('/', [AuthController::class, 'showLogin']);
@@ -33,4 +34,12 @@ Route::post('/admin/admins', [AdminController::class, 'store']);
 Route::get('/admin/admins/{id}/edit', [AdminController::class, 'edit']);
 Route::post('/admin/admins/{id}', [AdminController::class, 'update']);
 Route::get('/admin/admins/{id}/delete', [AdminController::class, 'destroy']);
+
+// admin products
+Route::get('/admin/products', [AdminProductController::class, 'index']);
+Route::get('/admin/products/create', [AdminProductController::class, 'create']);
+Route::post('/admin/products', [AdminProductController::class, 'store']);
+Route::get('/admin/products/{id}/edit', [AdminProductController::class, 'edit']);
+Route::post('/admin/products/{id}', [AdminProductController::class, 'update']);
+Route::post('/admin/products/{id}/delete', [AdminProductController::class, 'destroy']);
 

@@ -9,20 +9,34 @@
 
 <body>
 
-<div class="d-flex">
+<div class="d-flex admin-wrapper">
 
     <!-- Sidebar -->
-    <div class="bg-dark text-white p-3" style="width:220px; min-height:100vh;">
-        <h4>ADMIN</h4>
-        <a href="/admin/admins" class="text-white d-block mt-2">Quản lý Admin</a>
-        <a href="/products" class="text-white d-block mt-2">Sản phẩm</a>
-        <a href="/logout" class="text-white d-block mt-2">Đăng xuất</a>
-    </div>
+    <aside class="sidebar">
+        <div class="sidebar__brand">ADMIN</div>
+
+        <nav class="sidebar__nav">
+            <a href="/admin/admins"
+               class="sidebar__link {{ request()->is('admin/admins*') ? 'is-active' : '' }}">
+                Quản lý Admin
+            </a>
+            <a href="/admin/products"
+               class="sidebar__link {{ request()->is('admin/products*') ? 'is-active' : '' }}">
+                Quản lý Sản phẩm
+            </a>
+
+            <div class="sidebar__divider"></div>
+
+            <a href="/logout" class="sidebar__link sidebar__link--danger">
+                Đăng xuất
+            </a>
+        </nav>
+    </aside>
 
     <!-- Content -->
-    <div class="flex-fill p-4">
+    <main class="main-content">
         @yield('content')
-    </div>
+    </main>
 
 </div>
 
