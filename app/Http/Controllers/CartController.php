@@ -58,9 +58,7 @@ class CartController extends Controller
 
         $this->putCart($request, $cart);
 
-        return redirect()
-            ->route('cart.index')
-            ->with('success', 'Đã thêm vào giỏ hàng.');
+        return back()->with('success', 'Đã thêm vào giỏ hàng.');
     }
 
     public function update(Request $request)
