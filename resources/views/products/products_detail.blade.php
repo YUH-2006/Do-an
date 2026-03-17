@@ -1,36 +1,43 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <title>Danh sách sản phẩm</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
+@extends('layouts.app')
 
-<h1>Danh sách sản phẩm</h1>
+@section('content')
+    <div class="product-detail">
+        <a href="{{ route('products.index') }}">← Quay lại danh sách</a>
 
-@if(count($products) == 0)
-    <p>Chưa có sản phẩm nào.</p>
-@else
-<div class="product-list">
-    @foreach($products as $product)
-        <div class="product-card">
-            <h3>{{ $product->name }}</h3>
-            <p>Giá: {{ number_format($product->price) }} VND</p>
+        <h1>{{ $product->name }}</h1>
 
+        <p><strong>Giá:</strong> {{ number_format($product->price) }} VND</p>
+
+        @if(!empty($product->category))
+            <p><strong>Danh mục:</strong> {{ $product->category }}</p>
+        @endif
+
+        <div class="product-detail__media">
             @if(!empty($product->image))
-                <img src="{{ asset('images/products/' . $product->image) }}" width="150">
+                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" style="max-width: 420px; width: 100%; height: auto;">
             @else
-                <img src="{{ asset('images/no-image.png') }}" width="150">
+                <img src="{{ asset('images/no-image.png') }}" alt="No image" style="max-width: 420px; width: 100%; height: auto;">
             @endif
-
-            <a href="{{ route('products.show', $product->id) }}">
-                <button>Xem chi tiết</button>
-            </a>
         </div>
-    @endforeach
-</div>
-@endif
 
-</body>
-</html>
+        <div style="margin: 14px 0; display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+            <form method="POST" action="{{ route('cart.add', $product->id) }}" style="display:flex; gap:10px; align-items:center;">
+                @csrf
+                <label>
+                    Số lượng:
+                    <input type="number" name="qty" value="1" min="1" style="width: 90px; padding: 6px;" />
+                </label>
+                <button type="submit">Thêm vào giỏ hàng</button>
+            </form>
+
+            <a href="{{ route('cart.index') }}">Xem giỏ hàng</a>
+        </div>
+
+        @if(!empty($product->description))
+            <div class="product-detail__desc">
+                <h3>Mô tả</h3>
+                <p>{{ $product->description }}</p>
+            </div>
+        @endif
+    </div>
+@endsection

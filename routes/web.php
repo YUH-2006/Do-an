@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 
 Route::get('/', [AuthController::class, 'showLogin']);
 
@@ -17,6 +18,13 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 // user
 Route::resource('products', ProductController::class);
+
+// cart (session)
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{productId}', [CartController::class, 'add'])->name('cart.add');
+Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/cart/remove/{productId}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 // admin
 Route::get('/admin/admins', [AdminController::class, 'index']);

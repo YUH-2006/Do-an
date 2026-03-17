@@ -9,7 +9,13 @@
 <nav class="jl-nav">
     <div class="jl-nav__inner">
         <a href="/products" class="jl-nav__brand" aria-label="FASTFOOD">
-            <span class="jl-nav__brand-mark">F</span>
+            <span class="jl-nav__brand-mark" aria-hidden="true" style="padding:0; overflow:hidden;">
+                <img
+                    src="{{ asset('images/drawing-some-food-icons-v0-yy4yiof2mly81.webp') }}"
+                    alt=""
+                    style="width:38px; height:38px; object-fit:cover; display:block;"
+                />
+            </span>
             <span class="jl-nav__brand-text">FASTFOOD</span>
         </a>
 
@@ -21,6 +27,13 @@
             <a class="jl-nav__link" href="#">CỬA HÀNG</a>
             <a class="jl-nav__link" href="#">LIÊN HỆ</a>
             <a class="jl-nav__link" href="#">TUYỂN DỤNG</a>
+            <a class="jl-nav__link" href="{{ route('cart.index') }}">
+                Giỏ hàng
+                @php($cartCount = collect(session('cart', []))->sum('qty'))
+                @if($cartCount > 0)
+                    ({{ $cartCount }})
+                @endif
+            </a>
         </div>
 
         <div class="jl-nav__right">
