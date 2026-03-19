@@ -14,7 +14,11 @@ class AddProfileFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->string('phone')->nullable();
+            $table->string('address')->nullable();
+            $table->text('bio')->nullable();
+            // Store relative path, e.g. "avatars/xxxx.jpg" (then render via asset('storage/'.$user->avatar))
+            $table->string('avatar')->nullable();
         });
     }
 
@@ -26,7 +30,7 @@ class AddProfileFieldsToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn(['phone', 'address', 'bio', 'avatar']);
         });
     }
 }

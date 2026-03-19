@@ -125,7 +125,7 @@ input[type="number"]:focus {
 .jl-nav__inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 14px 24px;
+    padding: 14px 32px;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;

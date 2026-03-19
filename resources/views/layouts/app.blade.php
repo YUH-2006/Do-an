@@ -23,10 +23,6 @@
             <a class="jl-nav__link jl-nav__link--active" href="/products">TRANG CHỦ</a>
             <a class="jl-nav__link" href="/products">THỰC ĐƠN</a>
             <a class="jl-nav__link" href="#">KHUYẾN MÃI</a>
-            <a class="jl-nav__link" href="#">TIN TỨC</a>
-            <a class="jl-nav__link" href="#">CỬA HÀNG</a>
-            <a class="jl-nav__link" href="#">LIÊN HỆ</a>
-            <a class="jl-nav__link" href="#">TUYỂN DỤNG</a>
             @php
                 $cart = session('cart', []);
                 $cartItems = array_values($cart);
@@ -107,7 +103,13 @@
             </form>
 
             <div class="jl-nav__user">
-                <span class="jl-nav__hello">Xin chào {{ Auth::user()->name ?? 'Guest' }}</span>
+                @php
+                    $currentUser = Auth::user() ?? session('user');
+                @endphp
+                <span class="jl-nav__hello">
+                    Xin chào {{ ($currentUser && $currentUser->name) ? $currentUser->name : 'Guest' }}
+                </span>
+                <a href="{{ route('profile.edit') }}" class="jl-nav__logout">Profile</a>
                 <a href="/logout" class="jl-nav__logout">Logout</a>
             </div>
         </div>

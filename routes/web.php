@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', [AuthController::class, 'showLogin']);
 
@@ -42,4 +43,8 @@ Route::post('/admin/products', [AdminProductController::class, 'store']);
 Route::get('/admin/products/{id}/edit', [AdminProductController::class, 'edit']);
 Route::post('/admin/products/{id}', [AdminProductController::class, 'update']);
 Route::post('/admin/products/{id}/delete', [AdminProductController::class, 'destroy']);
+
+// profile (user chỉnh sửa thông tin cá nhân)
+Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
