@@ -44,35 +44,35 @@
                     <label style="display:block; margin-bottom:6px; font-weight:600;">Tên</label>
                     <input type="text" name="name" value="{{ old('name', $user->name) }}" required
                         style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
-                    @error('name') <div style="color:#dc3545; margin-top:6px;">{{ $message }}</div> @enderror
+                    @error('name') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                 </div>
 
                 <div style="margin-bottom: 12px;">
                     <label style="display:block; margin-bottom:6px; font-weight:600;">Email</label>
                     <input type="email" name="email" value="{{ old('email', $user->email) }}" required
                         style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
-                    @error('email') <div style="color:#dc3545; margin-top:6px;">{{ $message }}</div> @enderror
+                    @error('email') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                 </div>
 
                 <div style="margin-bottom: 12px;">
                     <label style="display:block; margin-bottom:6px; font-weight:600;">Số điện thoại</label>
                     <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
                         style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;" placeholder="Tùy chọn">
-                    @error('phone') <div style="color:#dc3545; margin-top:6px;">{{ $message }}</div> @enderror
+                    @error('phone') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                 </div>
 
                 <div style="margin-bottom: 12px;">
                     <label style="display:block; margin-bottom:6px; font-weight:600;">Địa chỉ</label>
                     <input type="text" name="address" value="{{ old('address', $user->address) }}"
                         style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;" placeholder="Tùy chọn">
-                    @error('address') <div style="color:#dc3545; margin-top:6px;">{{ $message }}</div> @enderror
+                    @error('address') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                 </div>
 
                 <div style="margin-bottom: 12px;">
                     <label style="display:block; margin-bottom:6px; font-weight:600;">Bio</label>
                     <textarea name="bio" rows="4"
                         style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;" placeholder="Tùy chọn">{{ old('bio', $user->bio) }}</textarea>
-                    @error('bio') <div style="color:#dc3545; margin-top:6px;">{{ $message }}</div> @enderror
+                    @error('bio') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                 </div>
 
                 <div style="margin-bottom: 12px;">
@@ -80,7 +80,7 @@
                     <input type="file" name="avatar" accept="image/*"
                         style="width:100%; padding:8px; border:1px dashed #ddd; border-radius:6px;">
                     <div style="color:#6c757d; font-size: 13px; margin-top:6px;">Chỉ hỗ trợ JPG/PNG/WebP, kích thước tối đa 4MB.</div>
-                    @error('avatar') <div style="color:#dc3545; margin-top:6px;">{{ $message }}</div> @enderror
+                    @error('avatar') <div class="text-danger mt-1">{{ $message }}</div> @enderror
                 </div>
 
                 <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">

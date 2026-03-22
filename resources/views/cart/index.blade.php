@@ -8,6 +8,11 @@
             {{ session('success') }}
         </div>
     @endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
     @if (count($items) === 0)
         <p>Giỏ hàng của bạn đang trống.</p>
@@ -78,6 +83,9 @@
 
             <div style="margin-top: 16px; display:flex; gap:12px; flex-wrap:wrap;">
                 <button type="submit">Cập nhật giỏ hàng</button>
+                <a href="{{ route('checkout.index') }}">
+                    <button type="button" style="background: #10b981;">Thanh toán</button>
+                </a>
                 <a href="{{ route('products.index') }}">
                     <button type="button">Tiếp tục mua hàng</button>
                 </a>

@@ -9,15 +9,27 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $q = $request->q;
+        $query = Product::query();
 
-        if ($q) {
-            $products = Product::where('name', 'like', "%$q%")->get();
-        } else {
-            $products = Product::all();
+        $keyword = $request->input('keyword') ?: $request->input('q');
+        if ($keyword) {
+            $query->where('name', 'like', '%' . $keyword . '%');
         }
 
-        return view('products.index', compact('products'));
+        $category = trim($request->input('category', ''));
+        if ($category !== '') {
+            $query->whereRaw('TRIM(category) = ?', [$category]);
+        }
+
+        $products = $query->get();
+        $categories = Product::select('category')
+            ->whereNotNull('category')
+            ->where('category', '!=', '')
+            ->distinct()
+            ->orderBy('category')
+            ->pluck('category');
+
+        return view('products.index', compact('products', 'categories'));
     }
 
     public function show($id)

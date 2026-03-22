@@ -21,15 +21,26 @@
 
         <div class="jl-nav__menu" aria-label="Menu chính">
             <a class="jl-nav__link jl-nav__link--active" href="/products">TRANG CHỦ</a>
-            <a class="jl-nav__link" href="/products">THỰC ĐƠN</a>
-            <a class="jl-nav__link" href="#">KHUYẾN MÃI</a>
+        </div>
+
+        <div class="jl-nav__right">
             @php
-                $cart = session('cart', []);
-                $cartItems = array_values($cart);
-                $cartCount = collect($cart)->sum('qty');
-                $cartTotal = collect($cartItems)->reduce(function ($carry, $item) {
-                    return $carry + (($item['price'] ?? 0) * ($item['qty'] ?? 0));
-                }, 0);
+                $currentUserForCart = \Auth::user() ?? session('user');
+                if ($currentUserForCart instanceof \App\Models\User) {
+                    $cartRows = \App\Models\CartItem::where('user_id', $currentUserForCart->id)->with('product')->get();
+                    $cartItems = $cartRows->map(fn($r) => [
+                        'id' => $r->product->id,
+                        'name' => $r->product->name,
+                        'price' => $r->product->price,
+                        'image' => $r->product->image,
+                        'qty' => $r->qty,
+                    ])->all();
+                } else {
+                    $cart = session('cart', []);
+                    $cartItems = array_values($cart);
+                }
+                $cartCount = collect($cartItems)->sum('qty');
+                $cartTotal = collect($cartItems)->reduce(fn($c, $i) => $c + (($i['price'] ?? 0) * ($i['qty'] ?? 0)), 0);
             @endphp
 
             <div class="jl-cart" data-cart>
@@ -89,19 +100,11 @@
                         </div>
                         <div class="jl-cart__drawer-actions">
                             <a href="{{ route('cart.index') }}"><button type="button">Xem giỏ hàng</button></a>
-                            <a href="{{ route('cart.index') }}"><button type="button">Thanh toán</button></a>
+                            <a href="{{ route('checkout.index') }}"><button type="button">Thanh toán</button></a>
                         </div>
                     </div>
                 </aside>
             </div>
-        </div>
-
-        <div class="jl-nav__right">
-            <form class="jl-nav__search" method="GET" action="/products" aria-label="Tìm sản phẩm">
-                <input type="text" name="keyword" placeholder="Tìm sản phẩm..." />
-                <button type="submit">Tìm</button>
-            </form>
-
             <div class="jl-nav__user">
                 @php
                     $currentUser = Auth::user() ?? session('user');
@@ -109,6 +112,7 @@
                 <span class="jl-nav__hello">
                     Xin chào {{ ($currentUser && $currentUser->name) ? $currentUser->name : 'Guest' }}
                 </span>
+                <a href="{{ route('orders.index') }}" class="jl-nav__logout">Đơn hàng</a>
                 <a href="{{ route('profile.edit') }}" class="jl-nav__logout">Profile</a>
                 <a href="/logout" class="jl-nav__logout">Logout</a>
             </div>
