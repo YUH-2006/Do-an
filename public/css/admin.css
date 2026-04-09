@@ -1,0 +1,86 @@
+body {
+    background: #f4f6f9;
+}
+
+/* Layout */
+.admin-wrapper {
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #111827 0%, #0b1220 100%);
+    color: #e5e7eb;
+    padding: 18px 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+.sidebar__brand {
+    font-weight: 800;
+    letter-spacing: .18em;
+    font-size: 14px;
+    padding: 10px 10px 16px;
+    text-align: left;
+    color: #ffffff;
+    opacity: .95;
+}
+
+.sidebar__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar__divider {
+    height: 1px;
+    background: rgba(255,255,255,.08);
+    margin: 10px 10px;
+}
+
+.sidebar__link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(229, 231, 235, .88);
+    padding: 10px 12px;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background .15s ease, color .15s ease, transform .15s ease;
+}
+
+.sidebar__link:hover {
+    background: rgba(255, 255, 255, .08);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+.sidebar__link.is-active {
+    background: rgba(59, 130, 246, .16);
+    color: #ffffff;
+    box-shadow: inset 0 0 0 1px rgba(59, 130, 246, .35);
+}
+
+.sidebar__link--danger:hover {
+    background: rgba(239, 68, 68, .14);
+    box-shadow: inset 0 0 0 1px rgba(239, 68, 68, .25);
+}
+
+/* Main */
+.main-content {
+    padding: 26px;
+    flex: 1;
+}
+
+/* Table tweak */
+.table-hover tbody tr:hover {
+    background: #f1f7ff;
+}
+
+/* Small quality-of-life */
+.card {
+    border: 0;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(17, 24, 39, .08);
+}
